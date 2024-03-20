@@ -1,0 +1,27 @@
+service: calculator
+
+provider:
+  name: google
+  stage: dev
+  runtime: python38
+  region: us-central1
+  project: protean-tome-417800
+  credentials: /tmp/gcp-key.json
+  memorySize: 128
+  timeout: 10s
+
+frameworkVersion: '3'
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!.gitignore'
+    - '!.git/**'
+
+functions:
+  main:
+    handler: main  # Assuming the handler function in main.py is named 'main'
+    events:
+      - http: true
