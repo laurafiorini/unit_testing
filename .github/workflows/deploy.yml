@@ -59,9 +59,6 @@ jobs:
       - name: Convert Google Cloud Credentials to Base64
         run: cat /tmp/gcp-key.json | base64 --wrap=0 > /tmp/gcp-key-base64.txt
 
-      - name: Installing serverless plugin
-        run: serverless plugin install -n serverless-google-cloudfunctions
-
       - name: Deploy Services to Google Cloud
         run: |
           SERVICES=$(cat serverless-compose.yml | grep 'path:' | awk '{print $2}')
